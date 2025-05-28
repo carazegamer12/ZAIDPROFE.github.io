@@ -1,47 +1,406 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset=" UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa Mental con Nubes SVG Animadas</title>
+    <style>
+        body {
+            font-family: cursive;
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+        }
 
-    <link rel="stylesheet" href="1_estilo.css">
+        .mapa {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nodo-central {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+            width: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .rama {
+            position: absolute;
+            width: 400px;
+            height: 230px;
+            z-index: 2;
+        }
+
+        .rama svg {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Posicionamiento de ramas */
+        .r1 {
+            top: 5px;
+            left: 600px;
+        }
+
+        .r2 {
+            top: 100px;
+            right: 150px;
+        }
+
+        .r3 {
+            top: 275px;
+            right: 50px;
+        }
+
+        .r4 {
+            top: 470px;
+            right: 150px;
+        }
+
+        .r5 {
+            bottom: 5px;
+            right: 300px;
+        }
+
+        .r6 {
+            bottom: 1px;
+            right: 550px;
+        }
+
+        .r7 {
+            bottom: 15px;
+            left: 350px;
+        }
+
+        .r8 {
+            bottom: 75px;
+            left: 150px;
+        }
+
+        .r9 {
+            bottom: 170px;
+            left: 150px;
+        }
+
+        .r10 {
+            top: 100px;
+            left: 250px;
+        }
+
+        .r11 {
+            top: 200px;
+            left: 150px;
+        }
+
+        .r12 {
+            top: 50px;
+            left: 400px;
+        }
+
+        svg#lineas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .tentaculo {
+            fill: none;
+            stroke: #0048ff;
+            /* Usa un degradado definido en SVG */
+            stroke-width: 3;
+            filter: drop-shadow(0 0 6px #00f);
+            animation: pulso 3s ease-in-out infinite;
+        }
+
+
+        @keyframes pulso {
+
+            0%,
+            100% {
+                stroke-width: 2;
+            }
+
+            50% {
+                stroke-width: 3;
+            }
+        }
+
+        div svg {
+            width: 300px;
+            height: 200px;
+        }
+
+        /* Nubes animadas */
+        .nube-svg {
+            animation: flotar 6s ease-in-out infinite;
+        }
+
+        .nube-svg2 {
+            animation: flotar2 8s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes flotar2 {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+        }
+    </style>
 </head>
 
-<body style="background-color: white; background-image: url(imagenes/japon.jpg);">
-    <header>
-        <h1 class="blu"><strong>JAPON</strong></h1>
-    </header>
-    <br>
-    <div id="container">
+<body style="background-color: black;">
+    <div class="mapa">
+
+        <!-- Conexiones -->
+        <svg id="lineas">
+            <defs>
+                <linearGradient id="gradiente" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#00f; stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#0ff; stop-opacity:1" />
+                </linearGradient>
+            </defs>
+
+        </svg>
+
+        <!-- Nodo central -->
+        <div class="nodo-central" id="central">LAS CARACTERISTICAS ECONOMICAS DEL VIRREINATO</div>
+
+        <!-- Ramas con nubes SVG animadas -->
+        <!-- Alternamos las dos formas para dar variedad -->
+        <div class="rama r1" id="r1">
+            <svg class="nube-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M90,100 C70,70 110,50 130,70 C140,40 180,40 190,70 C210,65 230,85 220,100 C240,110 230,140 200,130 C190,150 160,150 150,130 C130,150 100,140 105,120 C85,120 80,110 90,100 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 20px; font-size: small;">
+                        Impacto económico <br> en la sociedad
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+        <div class="rama r2" id="r2">
+            <svg class="nube-svg2" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M100,120 C90,90 130,70 150,90 C160,60 200,60 210,90 C230,85 250,105 240,120 C260,130 250,160 220,150 C210,170 180,170 170,150 C150,170 120,160 125,140 C105,140 100,130 100,120 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 35px; padding-left: 50px; font-size: 12px;">
+                        Economía basada <br>en la<br> extracción de recursos
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+        <div class="rama r3" id="r3">
+            <svg class="nube-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M90,100 C70,70 110,50 130,70 C140,40 180,40 190,70 C210,65 230,85 220,100 C240,110 230,140 200,130 C190,150 160,150 150,130 C130,150 100,140 105,120 C85,120 80,110 90,100 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 15px; font-size: small;">
+                        Agricultura <br>y <br> ganadería
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+        <div class="rama r4" id="r4">
+            <svg class="nube-svg2" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M100,120 C90,90 130,70 150,90 C160,60 200,60 210,90 C230,85 250,105 240,120 C260,130 250,160 220,150 C210,170 180,170 170,150 C150,170 120,160 125,140 C105,140 100,130 100,120 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 30px; padding-left: 35px; font-size: small;">
+                        Comercio <br> y monopolio <br> colonial
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+        <div class="rama r5" id="r5">
+            <svg class="nube-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M90,100 C70,70 110,50 130,70 C140,40 180,40 190,70 C210,65 230,85 220,100 C240,110 230,140 200,130 C190,150 160,150 150,130 C130,150 100,140 105,120 C85,120 80,110 90,100 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 15px; font-size: small;">
+                        Comercio <br>internacional
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+        <div class="rama r6" id="r6">
+            <svg class="nube-svg2" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M100,120 C90,90 130,70 150,90 C160,60 200,60 210,90 C230,85 250,105 240,120 C260,130 250,160 220,150 C210,170 180,170 170,150 C150,170 120,160 125,140 C105,140 100,130 100,120 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 35px; padding-left: 35px; font-size: small;">
+                        Instituciones <br>económicas
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+        <div class="rama r7" id="r7">
+            <svg class="nube-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M90,100 C70,70 110,50 130,70 C140,40 180,40 190,70 C210,65 230,85 220,100 C240,110 230,140 200,130 C190,150 160,150 150,130 C130,150 100,140 105,120 C85,120 80,110 90,100 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 15px; font-size: small;">
+                        Casa de <br> contratación de <br> Sevilla
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+        <!-- Ramas faltantes corregidas -->
+        <div class="rama r8" id="r8">
+            <svg class="nube-svg2" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M100,120 C90,90 130,70 150,90 C160,60 200,60 210,90 C230,85 250,105 240,120 C260,130 250,160 220,150 C210,170 180,170 170,150 C150,170 120,160 125,140 C105,140 100,130 100,120 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 45px; padding-left: 35px; font-size: small;">
+                        Sistema tributario
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+
+        <div class="rama r9" id="r9">
+            <svg class="nube-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M90,100 C70,70 110,50 130,70 C140,40 180,40 190,70 C210,65 230,85 220,100 C240,110 230,140 200,130 C190,150 160,150 150,130 C130,150 100,140 105,120 C85,120 80,110 90,100 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 25px; font-size: small;">
+                        Mano de obra
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+
+        <div class="rama r10" id="r10">
+            <svg class="nube-svg2" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M100,120 C90,90 130,70 150,90 C160,60 200,60 210,90 C230,85 250,105 240,120 C260,130 250,160 220,150 C210,170 180,170 170,150 C150,170 120,160 125,140 C105,140 100,130 100,120 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 32px; padding-left: 30px; font-size: small;">
+                        Contrabando <br>y <br> corrupción
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
+        <div class="rama r11" id="r11">
+            <svg class="nube-svg2" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M100,120 C90,90 130,70 150,90 C160,60 200,60 210,90 C230,85 250,105 240,120 C260,130 250,160 220,150 C210,170 180,170 170,150 C150,170 120,160 125,140 C105,140 100,130 100,120 Z"
+                    fill="#fff" stroke="#999" stroke-width="4" />
+                <foreignObject x="40" y="60" width="220" height="80">
+                    <div xmlns="http://www.w3.org/1999/xhtml"
+                        style="text-align:center; font-weight:bold; color:#333; padding-top: 32px; padding-left: 30px; font-size: small;">
+                        moneda <br>y sistema <br>financiero
+                    </div>
+                </foreignObject>
+            </svg>
+        </div>
 
 
-        <nav>
-            <ul class="bla">
-                <center>
-                    <li><a href="inovacion.html">Inovacion</a></li>
-                    <hr>
-                    <li><a href="aportaciones.html">Aportaciones</a></li>
-                    <hr>
-                    <li><a href="aportaciones2.html">Aportaciones 2</a></li>
-                </center>
-            </ul>
-        </nav>
 
+        <script>
+            const svg = document.getElementById("lineas");
+            const parametros = [];
+            for (let i = 1; i <= 11; i++) {
+                parametros.push({
+                    freq: 0.001 + Math.random() * 0.002,
+                    amp: 25 + Math.random() * 50,
+                    phase: Math.random() * 1000
+                });
+            }
 
-    </div>
-    <div class="clearfix"></div>
-    <br>
-    <p style="color: black;"> hecho por:</p>
-    <p style="color: black;"><strong>Carlos Azael Arevalo Gutierrez</strong> - Creador de la pagina web</p>
-    <p style="color: black;"><strong>Emiliano Garcia Arevalo</strong> - ideas/cartulina</p>
-    <p style="color: black;"><strong>Ithamar Alvarez Barrera</strong> - ideas/cartulina</p>
-    <p style="color: black;"><strong>Ismael Arellano Rodriguez</strong> - Investigacion</p>
+            function conectarTentaculos() {
+                svg.innerHTML = "";
+                const tiempo = performance.now();
+                const centro = document.getElementById("central").getBoundingClientRect();
+                const cx = centro.left + centro.width / 2;
+                const cy = centro.top + centro.height / 2;
 
+                for (let i = 1; i <= 11; i++) {
+                    const nodo = document.getElementById(`r${i}`).getBoundingClientRect();
+                    const nx = nodo.left + nodo.width / 2;
+                    const ny = nodo.top + nodo.height / 2;
 
+                    const dx = nx - cx;
+                    const dy = ny - cy;
+                    const distancia = Math.sqrt(dx * dx + dy * dy);
+                    const acorte = 40;
+                    const tx = nx - (dx / distancia) * acorte;
+                    const ty = ny - (dy / distancia) * acorte;
 
+                    const { freq, amp, phase } = parametros[i - 1];
+                    const t = tiempo + phase;
 
+                    const mx = (cx + tx) / 2 + Math.sin(t * freq) * amp;
+                    const my = (cy + ty) / 2 + Math.cos(t * freq) * amp;
+
+                    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    path.setAttribute("class", "tentaculo");
+                    path.setAttribute("d", `M${cx},${cy} Q${mx},${my} ${tx},${ty}`);
+                    svg.appendChild(path);
+                }
+
+                requestAnimationFrame(conectarTentaculos);
+            }
+
+            window.onload = conectarTentaculos;
+            window.onresize = () => conectarTentaculos(performance.now());
+        </script>
 </body>
 
 </html>
